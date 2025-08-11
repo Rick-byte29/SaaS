@@ -3,152 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BrainWave AI - SaaS Platform</title>
+    <title>BrainWave AI - Next Gen AI SaaS</title>
+
+    <!-- Google Fonts Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <style>
         body {
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Roboto', sans-serif;
             background-color: #0d0d0d;
             color: white;
             margin: 0;
             padding: 0;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
         }
         header {
+            background-color: #111;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #00f2ff;
+        }
+        header .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 2rem;
-            background-color: #111;
-            position: sticky;
-            top: 0;
-            z-index: 10;
+            flex-wrap: wrap;
         }
         header .logo {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: bold;
             color: #00f2ff;
+        }
+        header .tagline {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-top: 5px;
+        }
+        nav {
+            margin-top: 10px;
         }
         nav a {
             margin: 0 1rem;
             text-decoration: none;
             color: white;
+            font-weight: 500;
+            transition: 0.3s;
         }
         nav a:hover {
             color: #00f2ff;
         }
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: auto;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 25px rgba(0, 242, 255, 0.2);
+        }
         .hero {
             text-align: center;
-            padding: 4rem 2rem;
         }
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: #00f2ff;
         }
         .hero p {
             font-size: 1.2rem;
             color: #ccc;
         }
-        canvas {
-            display: block;
-            margin: 2rem auto;
+        .about p {
+            line-height: 1.6;
+            color: #ddd;
         }
-        .section {
-            padding: 4rem 2rem;
-            max-width: 1000px;
-            margin: auto;
-        }
-        .testimonials, .pricing {
+        .pricing {
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
             justify-content: center;
         }
-        .card {
-            background-color: #1a1a1a;
-            padding: 1.5rem;
-            border-radius: 10px;
-            flex: 1 1 calc(33% - 1rem);
-            min-width: 250px;
-        }
         .pricing .card {
-            border: 2px solid #00f2ff;
+            background: linear-gradient(135deg, #00f2ff, #0066ff);
+            padding: 2rem;
+            border-radius: 15px;
+            color: black;
+            flex: 1 1 calc(33% - 1rem);
+            min-width: 260px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+        .pricing .card:hover {
+            transform: scale(1.05);
         }
         footer {
             background-color: #111;
             padding: 2rem;
             text-align: center;
+            border-top: 2px solid #00f2ff;
         }
         footer a {
             margin: 0 10px;
-            color: white;
+            color: #00f2ff;
             font-size: 1.5rem;
             text-decoration: none;
         }
+        /* Testimonials 3D Canvas */
+        #testimonialsCanvas {
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            height: 400px;
+        }
         @media (max-width: 768px) {
-            .card {
+            .pricing .card {
                 flex: 1 1 100%;
+            }
+            #testimonialsCanvas {
+                height: 300px;
             }
         }
     </style>
 </head>
+
 <body>
     <header>
-        <div class="logo">BrainWave AI</div>
-        <nav>
-            <a href="#about">About Us</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#testimonials">Testimonials</a>
-        </nav>
+        <div class="header-content">
+            <div>
+                <div class="logo">BrainWave AI</div>
+                <div class="tagline">Revolutionizing Workflows | Powered by Advanced Intelligence</div>
+                <div class="tagline">From automation to analytics — all in one platform</div>
+            </div>
+            <nav>
+                <a href="#about">About Us</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
     </header>
 
     <section class="hero" data-aos="fade-up">
-        <h1>“Supercharge Your Workflow with AI!”</h1>
-        <p>The all-in-one AI SaaS helping you automate tasks, analyze data, and boost productivity — instantly.</p>
+        <h1>Supercharge Your Workflow with AI</h1>
+        <p>The next-gen AI SaaS platform built for speed, accuracy, and innovation.</p>
         <canvas id="bgCanvas" width="500" height="300"></canvas>
     </section>
 
-    <section id="about" class="section" data-aos="fade-right">
+    <section id="about" class="about" data-aos="fade-right">
         <h2>About Us</h2>
-        <p>BrainWave AI is a cutting-edge SaaS platform that uses artificial intelligence to help businesses automate time-consuming processes, enhance decision-making, and personalize customer experiences—all powered by next-gen algorithms trained on billions of data points.</p>
+        <p>
+            BrainWave AI is not just another SaaS — it's your digital co-pilot. We combine the latest breakthroughs 
+            in machine learning, natural language processing, and predictive analytics to deliver solutions that 
+            evolve with you. Our platform automates repetitive workflows, uncovers hidden insights in your data, 
+            and adapts to your unique business needs in real-time.
+        </p>
+        <p>
+            Established in 2020, we have served 5,000+ businesses globally, from startups to Fortune 500 firms. 
+            Our AI constantly learns and improves, ensuring that you're always ahead in efficiency and decision-making. 
+            We believe in empowering every team with enterprise-grade AI tools that are intuitive, affordable, and secure.
+        </p>
+        <p>
+            At BrainWave AI, our mission is simple: harness AI not to replace humans, but to amplify human potential.
+            Whether it's writing code, generating sales reports, or predicting market trends, we help you do it better — and faster.
+        </p>
     </section>
 
-    <section id="pricing" class="section" data-aos="zoom-in">
+    <section id="pricing" data-aos="zoom-in">
         <h2>Pricing Plans</h2>
         <div class="pricing">
             <div class="card">
                 <h3>Starter</h3>
                 <p>$9/month</p>
-                <p>Perfect for individuals starting with AI automation.</p>
+                <p>Perfect for personal projects, students, and AI enthusiasts</p>
             </div>
             <div class="card">
                 <h3>Pro</h3>
                 <p>$29/month</p>
-                <p>Ideal for small teams looking to save hours daily.</p>
+                <p>For growing businesses and teams that want serious productivity boosts</p>
             </div>
             <div class="card">
                 <h3>Enterprise</h3>
                 <p>$99/month</p>
-                <p>Scalable AI for large corporations with heavy workloads.</p>
+                <p>Unlimited scalability, priority support, and deep integrations for large enterprises</p>
             </div>
         </div>
     </section>
 
-    <section id="testimonials" class="section" data-aos="fade-up">
-        <h2>What Our Customers Say</h2>
-        <div class="testimonials">
-            <div class="card">
-                <p>"BrainWave AI cut down my data analysis time by 80%! Incredible!"</p>
-                <small>- Jane D., Data Analyst</small>
-            </div>
-            <div class="card">
-                <p>"Our sales team productivity doubled in just two weeks."</p>
-                <small>- Mike P., Sales Manager</small>
-            </div>
-            <div class="card">
-                <p>"It's like having a personal AI assistant that never sleeps."</p>
-                <small>- Sarah K., Entrepreneur</small>
-            </div>
-        </div>
+    <section id="testimonials" data-aos="fade-up">
+        <h2 style="text-align:center;">What Our Customers Say</h2>
+        <canvas id="testimonialsCanvas"></canvas>
+    </section>
+
+    <section id="contact" data-aos="flip-up">
+        <h2>Contact Us</h2>
+        <p>Email: support@brainwaveai.com</p>
+        <p>Phone: +1 (555) 123-4567</p>
+        <p>Location: Silicon Valley, CA</p>
     </section>
 
     <footer>
@@ -156,35 +213,89 @@
         <a href="https://instagram.com" target="_blank">📷</a>
         <a href="https://facebook.com" target="_blank">📘</a>
         <a href="https://wa.me/1234567890" target="_blank">💬</a>
-        <p>&copy; 2025 BrainWave AI</p>
+        <p>&copy; 2025 BrainWave AI | All Rights Reserved</p>
     </footer>
 
+    <!-- Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <script>
-        // AOS animations init
         AOS.init({ duration: 1000 });
 
-        // Simple 3D rotating cube with Three.js
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, 500/300, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bgCanvas'), alpha: true });
-        renderer.setSize(500, 300);
-
-        const geometry = new THREE.BoxGeometry();
-        const material = new THREE.MeshBasicMaterial({ color: 0x00f2ff, wireframe: true });
-        const cube = new THREE.Mesh(geometry, material);
-        scene.add(cube);
-
-        camera.position.z = 3;
-
-        function animate() {
-            requestAnimationFrame(animate);
-            cube.rotation.x += 0.01;
-            cube.rotation.y += 0.01;
-            renderer.render(scene, camera);
+        // 3D cube animation in Hero
+        const sceneHero = new THREE.Scene();
+        const cameraHero = new THREE.PerspectiveCamera(75, 500/300, 0.1, 1000);
+        const rendererHero = new THREE.WebGLRenderer({ canvas: document.getElementById('bgCanvas'), alpha: true });
+        rendererHero.setSize(500, 300);
+        const geometryHero = new THREE.BoxGeometry();
+        const materialHero = new THREE.MeshBasicMaterial({ color: 0x00f2ff, wireframe: true });
+        const cubeHero = new THREE.Mesh(geometryHero, materialHero);
+        sceneHero.add(cubeHero);
+        cameraHero.position.z = 3;
+        function animateHero() {
+            requestAnimationFrame(animateHero);
+            cubeHero.rotation.x += 0.01;
+            cubeHero.rotation.y += 0.01;
+            rendererHero.render(sceneHero, cameraHero);
         }
-        animate();
+        animateHero();
+
+        // 3D Cylinder Carousel for Testimonials
+        const testimonials = [
+            "BrainWave AI cut my workflow time in half! - Jane D.",
+            "Our revenue increased by 30% in 3 months! - Mike P.",
+            "Feels like having a personal AI genius - Sarah K.",
+            "The best decision we made for our company - Alex M.",
+            "Incredible technology and easy to use - Nina L.",
+            "My team collaborates better now - David H.",
+            "BrainWave AI changed how we work forever - Ella J.",
+            "Their support team is fantastic! - Karim T.",
+            "Accuracy and speed are unmatched - Olga V.",
+            "A must-have for modern businesses - Priya S."
+        ];
+
+        const sceneT = new THREE.Scene();
+        const cameraT = new THREE.PerspectiveCamera(70, window.innerWidth / 400, 0.1, 1000);
+        const rendererT = new THREE.WebGLRenderer({ canvas: document.getElementById('testimonialsCanvas'), alpha: true });
+        rendererT.setSize(window.innerWidth, 400);
+        cameraT.position.z = 8;
+
+        const radius = 6;
+        const group = new THREE.Group();
+        sceneT.add(group);
+        const loader = new THREE.FontLoader();
+        
+        // Load font and create text meshes around a cylinder
+        loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function(font) {
+            testimonials.forEach((txt, i) => {
+                const textGeo = new THREE.TextGeometry(txt, {
+                    font: font,
+                    size: 0.4,
+                    height: 0.05
+                });
+                const textMat = new THREE.MeshBasicMaterial({ color: 0x00f2ff });
+                const textMesh = new THREE.Mesh(textGeo, textMat);
+                const angle = (i / testimonials.length) * Math.PI * 2;
+                textMesh.position.set(Math.cos(angle) * radius, (i % 2 === 0 ? 1 : -1), Math.sin(angle) * radius);
+                textMesh.lookAt(new THREE.Vector3(0, 0, 0));
+                group.add(textMesh);
+            });
+        });
+
+        function animateT() {
+            requestAnimationFrame(animateT);
+            group.rotation.y += 0.005;
+            rendererT.render(sceneT, cameraT);
+        }
+        animateT();
+
+        // Responsive
+        window.addEventListener('resize', () => {
+            cameraT.aspect = window.innerWidth / 400;
+            cameraT.updateProjectionMatrix();
+            rendererT.setSize(window.innerWidth, 400);
+        });
     </script>
 </body>
 </html>
