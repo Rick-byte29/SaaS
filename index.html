@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrainWave AI - SaaS Platform</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #0d0d0d;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #111;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00f2ff;
+        }
+        nav a {
+            margin: 0 1rem;
+            text-decoration: none;
+            color: white;
+        }
+        nav a:hover {
+            color: #00f2ff;
+        }
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            color: #00f2ff;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+        canvas {
+            display: block;
+            margin: 2rem auto;
+        }
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1000px;
+            margin: auto;
+        }
+        .testimonials, .pricing {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .card {
+            background-color: #1a1a1a;
+            padding: 1.5rem;
+            border-radius: 10px;
+            flex: 1 1 calc(33% - 1rem);
+            min-width: 250px;
+        }
+        .pricing .card {
+            border: 2px solid #00f2ff;
+        }
+        footer {
+            background-color: #111;
+            padding: 2rem;
+            text-align: center;
+        }
+        footer a {
+            margin: 0 10px;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+        @media (max-width: 768px) {
+            .card {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">BrainWave AI</div>
+        <nav>
+            <a href="#about">About Us</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#testimonials">Testimonials</a>
+        </nav>
+    </header>
+
+    <section class="hero" data-aos="fade-up">
+        <h1>“Supercharge Your Workflow with AI!”</h1>
+        <p>The all-in-one AI SaaS helping you automate tasks, analyze data, and boost productivity — instantly.</p>
+        <canvas id="bgCanvas" width="500" height="300"></canvas>
+    </section>
+
+    <section id="about" class="section" data-aos="fade-right">
+        <h2>About Us</h2>
+        <p>BrainWave AI is a cutting-edge SaaS platform that uses artificial intelligence to help businesses automate time-consuming processes, enhance decision-making, and personalize customer experiences—all powered by next-gen algorithms trained on billions of data points.</p>
+    </section>
+
+    <section id="pricing" class="section" data-aos="zoom-in">
+        <h2>Pricing Plans</h2>
+        <div class="pricing">
+            <div class="card">
+                <h3>Starter</h3>
+                <p>$9/month</p>
+                <p>Perfect for individuals starting with AI automation.</p>
+            </div>
+            <div class="card">
+                <h3>Pro</h3>
+                <p>$29/month</p>
+                <p>Ideal for small teams looking to save hours daily.</p>
+            </div>
+            <div class="card">
+                <h3>Enterprise</h3>
+                <p>$99/month</p>
+                <p>Scalable AI for large corporations with heavy workloads.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="section" data-aos="fade-up">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonials">
+            <div class="card">
+                <p>"BrainWave AI cut down my data analysis time by 80%! Incredible!"</p>
+                <small>- Jane D., Data Analyst</small>
+            </div>
+            <div class="card">
+                <p>"Our sales team productivity doubled in just two weeks."</p>
+                <small>- Mike P., Sales Manager</small>
+            </div>
+            <div class="card">
+                <p>"It's like having a personal AI assistant that never sleeps."</p>
+                <small>- Sarah K., Entrepreneur</small>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Connect with us:</p>
+        <a href="https://instagram.com" target="_blank">📷</a>
+        <a href="https://facebook.com" target="_blank">📘</a>
+        <a href="https://wa.me/1234567890" target="_blank">💬</a>
+        <p>&copy; 2025 BrainWave AI</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // AOS animations init
+        AOS.init({ duration: 1000 });
+
+        // Simple 3D rotating cube with Three.js
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, 500/300, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bgCanvas'), alpha: true });
+        renderer.setSize(500, 300);
+
+        const geometry = new THREE.BoxGeometry();
+        const material = new THREE.MeshBasicMaterial({ color: 0x00f2ff, wireframe: true });
+        const cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
+
+        camera.position.z = 3;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        }
+        animate();
+    </script>
+</body>
+</html>
